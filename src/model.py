@@ -27,6 +27,7 @@ class Tool(StrEnum):
     video = auto()
     shader = auto()
     video_speed = auto()
+    navigate = auto()
 
 
 @define
@@ -44,7 +45,18 @@ class VideoSpeedPayload:
     speed: float
 
 
+class NavigateKind(StrEnum):
+    VIDEO = auto()
+    DASHBOARD = auto()
+
+
+@define
+class NavigatePayload:
+    kind: NavigateKind
+    name: str
+
+
 @define
 class SocketMsg:
     tool: Tool
-    payload: VideoPayload | ShaderPayload | VideoSpeedPayload
+    payload: VideoPayload | ShaderPayload | VideoSpeedPayload | NavigatePayload
